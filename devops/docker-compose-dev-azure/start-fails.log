@@ -1,0 +1,28 @@
+Connecting...
+2023-08-14T02:09:23  Welcome, you are now connected to log-streaming service.
+Starting Log Tail -n 10 of existing logs ----
+/appsvctmp/volatile/logs/runtime/41216232ddedafbb1700eb60e417f26180850f7ed4b1be3c96b81469b2151202.log
+2023-08-14T02:04:01.443127738Z: [ERROR]  172.16.1.1 - - [14/Aug/2023 02:04:01] "GET /robots1234.txt HTTP/1.1" 404 -
+2023-08-14T02:04:01.583439202Z: [ERROR]  172.16.1.1 - - [14/Aug/2023 02:04:01] "GET /robots933456.txt HTTP/1.1" 404 -
+2023-08-14T02:04:02.107882336Z: [ERROR]  API Logic Server - Start Default App - redirect /admin-app/index.html
+2023-08-14T02:04:02.116606765Z: [ERROR]  172.16.1.1 - - [14/Aug/2023 02:04:02] "GET / HTTP/1.1" 302 -
+2023-08-14T02:04:02.641150600Z: [ERROR]  API Logic Server - Start Default App - redirect /admin-app/index.html
+2023-08-14T02:04:02.643002006Z: [ERROR]  172.16.1.1 - - [14/Aug/2023 02:04:02] "GET / HTTP/1.1" 302 -
+2023-08-14T02:04:08.348546098Z: [ERROR]  API Logic Server - Start Default App - redirect /admin-app/index.html
+2023-08-14T02:04:08.356959925Z: [ERROR]  172.16.1.1 - - [14/Aug/2023 02:04:08] "GET / HTTP/1.1" 302 -
+2023-08-14T02:04:18.337186047Z: [ERROR]  API Logic Server - Start Default App - redirect /admin-app/index.html
+2023-08-14T02:04:18.340600261Z: [ERROR]  172.16.1.1 - - [14/Aug/2023 02:04:18] "GET / HTTP/1.1" 302 -
+/appsvctmp/volatile/logs/runtime/1b1c1d9e85eb92f2f8b6f686af6a1c4d19d12ffd2e43d04e21c44a89a31e046e.log
+2023-08-14T02:04:00.296496845Z: [ERROR]  2023-08-14 02:04:00.295 UTC [908] FATAL:  the database system is starting up
+2023-08-14T02:04:00.313880003Z: [ERROR]  2023-08-14 02:04:00.313 UTC [909] FATAL:  the database system is starting up
+2023-08-14T02:04:00.326451344Z: [ERROR]  2023-08-14 02:04:00.326 UTC [910] FATAL:  the database system is starting up
+2023-08-14T02:04:00.352856832Z: [ERROR]  2023-08-14 02:04:00.352 UTC [911] FATAL:  the database system is starting up
+2023-08-14T02:04:00.366415677Z: [ERROR]  2023-08-14 02:04:00.366 UTC [912] FATAL:  the database system is starting up
+2023-08-14T02:06:00.815717450Z: [ERROR]  2023-08-14 02:06:00.815 UTC [23] LOG:  database system was not properly shut down; automatic recovery in progress
+2023-08-14T02:06:00.867978141Z: [ERROR]  2023-08-14 02:06:00.867 UTC [23] LOG:  redo starts at 0/1820A88
+2023-08-14T02:06:00.868380242Z: [ERROR]  2023-08-14 02:06:00.868 UTC [23] LOG:  invalid record length at 0/1820B70: wanted 24, got 0
+2023-08-14T02:06:00.868766244Z: [ERROR]  2023-08-14 02:06:00.868 UTC [23] LOG:  redo done at 0/1820B38
+2023-08-14T02:06:01.470678137Z: [ERROR]  2023-08-14 02:06:01.470 UTC [1] LOG:  database system is ready to accept connections
+Ending Log Tail of existing logs ---
+Starting Live Log Stream ---
+2023-08-14T02:10:23  No new trace in the past 1 min(s).
