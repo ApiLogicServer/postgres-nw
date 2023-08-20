@@ -1,5 +1,5 @@
 about:
-  date: August 13, 2023 16:58:59
+  date: August 20, 2023 07:18:27
   recent_changes: works with modified safrs-react-admin
   version: 0.0.0
 api_root: '{http_type}://{swagger_host}:{port}/{api}'
@@ -11,14 +11,14 @@ info:
 resources:
   Category:
     attributes:
-    - label: ' category_id*'
-      name: category_id
+    - label: ' category_name*'
+      name: category_name
+      required: true
       search: true
       sort: true
-    - name: category_name
-      required: true
     - name: description
     - name: picture
+    - name: category_id
     tab_groups:
     - direction: tomany
       fks:
@@ -26,16 +26,14 @@ resources:
       name: ProductList
       resource: Product
     type: Category
-    user_key: category_id
+    user_key: category_name
   Customer:
     attributes:
-    - label: ' customer_id*'
-      name: customer_id
+    - label: ' company_name*'
+      name: company_name
       required: true
       search: true
       sort: true
-    - name: company_name
-      required: true
     - name: contact_name
     - name: contact_title
     - name: address
@@ -45,6 +43,8 @@ resources:
     - name: country
     - name: phone
     - name: fax
+    - name: customer_id
+      required: true
     tab_groups:
     - direction: tomany
       fks:
@@ -57,7 +57,7 @@ resources:
       name: OrderList
       resource: Order
     type: Customer
-    user_key: customer_id
+    user_key: company_name
   CustomerCustomerDemo:
     attributes:
     - label: ' customer_id*'
@@ -100,13 +100,12 @@ resources:
     user_key: customer_type_id
   Employee:
     attributes:
-    - label: ' employee_id*'
-      name: employee_id
+    - label: ' last_name*'
+      name: last_name
+      required: true
       search: true
       sort: true
     - name: reports_to
-    - name: last_name
-      required: true
     - name: first_name
       required: true
     - name: title
@@ -125,6 +124,7 @@ resources:
     - name: photo
     - name: notes
     - name: photo_path
+    - name: employee_id
     tab_groups:
     - direction: tomany
       fks:
@@ -147,7 +147,7 @@ resources:
       name: Employee
       resource: Employee
     type: Employee
-    user_key: employee_id
+    user_key: last_name
   EmployeeTerritory:
     attributes:
     - label: ' employee_id*'
@@ -172,8 +172,8 @@ resources:
     user_key: employee_id
   Order:
     attributes:
-    - label: ' order_id*'
-      name: order_id
+    - label: ' ship_name*'
+      name: ship_name
       search: true
       sort: true
     - name: customer_id
@@ -186,12 +186,12 @@ resources:
     - name: shipped_date
       type: DATE
     - name: freight
-    - name: ship_name
     - name: ship_address
     - name: ship_city
     - name: ship_region
     - name: ship_postal_code
     - name: ship_country
+    - name: order_id
     tab_groups:
     - direction: tomany
       fks:
@@ -214,17 +214,16 @@ resources:
       name: shipper
       resource: Shipper
     type: Order
-    user_key: order_id
+    user_key: ship_name
   OrderDetail:
     attributes:
-    - label: ' order_id*'
-      name: order_id
+    - label: ' unit_price*'
+      name: unit_price
+      required: true
       search: true
       sort: true
     - name: order_id
     - name: product_id
-    - name: unit_price
-      required: true
     - name: quantity
       required: true
     - name: discount
@@ -241,22 +240,22 @@ resources:
       name: product
       resource: Product
     type: OrderDetail
-    user_key: order_id
+    user_key: unit_price
   Product:
     attributes:
-    - label: ' product_id*'
-      name: product_id
+    - label: ' product_name*'
+      name: product_name
+      required: true
       search: true
       sort: true
     - name: category_id
     - name: supplier_id
-    - name: product_name
-      required: true
     - name: quantity_per_unit
     - name: unit_price
     - name: units_in_stock
     - name: units_on_order
     - name: reorder_level
+    - name: product_id
     - name: discontinued
       required: true
     tab_groups:
@@ -276,7 +275,7 @@ resources:
       name: supplier
       resource: Supplier
     type: Product
-    user_key: product_id
+    user_key: product_name
   Region:
     attributes:
     - label: ' region_id*'
@@ -295,13 +294,13 @@ resources:
     user_key: region_id
   Shipper:
     attributes:
-    - label: ' shipper_id*'
-      name: shipper_id
+    - label: ' company_name*'
+      name: company_name
+      required: true
       search: true
       sort: true
-    - name: company_name
-      required: true
     - name: phone
+    - name: shipper_id
     tab_groups:
     - direction: tomany
       fks:
@@ -309,15 +308,14 @@ resources:
       name: OrderList
       resource: Order
     type: Shipper
-    user_key: shipper_id
+    user_key: company_name
   Supplier:
     attributes:
-    - label: ' supplier_id*'
-      name: supplier_id
+    - label: ' company_name*'
+      name: company_name
+      required: true
       search: true
       sort: true
-    - name: company_name
-      required: true
     - name: contact_name
     - name: contact_title
     - name: address
@@ -328,6 +326,7 @@ resources:
     - name: phone
     - name: fax
     - name: homepage
+    - name: supplier_id
     tab_groups:
     - direction: tomany
       fks:
@@ -335,17 +334,17 @@ resources:
       name: ProductList
       resource: Product
     type: Supplier
-    user_key: supplier_id
+    user_key: company_name
   Territory:
     attributes:
-    - label: ' territory_id*'
-      name: territory_id
+    - label: ' territory_description*'
+      name: territory_description
       required: true
       search: true
       sort: true
     - name: region_id
       required: true
-    - name: territory_description
+    - name: territory_id
       required: true
     tab_groups:
     - direction: tomany
@@ -359,18 +358,18 @@ resources:
       name: region
       resource: Region
     type: Territory
-    user_key: territory_id
+    user_key: territory_description
   UsState:
     attributes:
-    - label: ' state_id*'
-      name: state_id
+    - label: ' state_name*'
+      name: state_name
       search: true
       sort: true
-    - name: state_name
     - name: state_abbr
     - name: state_region
+    - name: state_id
     type: UsState
-    user_key: state_id
+    user_key: state_name
 settings:
   HomeJS: http://localhost:5656/admin-app/home.js
   max_list_columns: 8

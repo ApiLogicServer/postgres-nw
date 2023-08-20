@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, ForeignKey, String, Text
+from sqlalchemy import Column, ForeignKey, String, Text, text
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from flask import abort
@@ -14,9 +14,9 @@ from flask_jwt_extended import create_access_token
 # Alter this file per your database maintenance policy
 #    See https://apilogicserver.github.io/Docs/Project-Rebuild/#rebuilding
 #
-# Created:  August 13, 2023 16:59:55
-# Database: mysql+pymysql://root:p@localhost:3306/authdb
-# Dialect:  mysql
+# Created:  August 20, 2023 07:20:17
+# Database: postgresql://postgres:p@localhost/authdb
+# Dialect:  postgresql
 #
 # mypy: ignore-errors
 ########################################################################################################################
@@ -38,7 +38,7 @@ metadata = Baseauthentication.metadata
 #NullType = db.String  # datatype fixup
 #TIMESTAMP= db.TIMESTAMP
 
-from sqlalchemy.dialects.mysql import *
+from sqlalchemy.dialects.postgresql import *
 
 
 
@@ -73,12 +73,12 @@ class User(SAFRSBase, Baseauthentication, db.Model, UserMixin):  # type: ignore
     _s_collection_name = 'authentication-User'  # type: ignore
     __bind_key__ = 'authentication'
 
-    name = Column(String(128))
+    name = Column(String(128), server_default=text("NULL::character varying"))
     notes = Column(Text)
     id = Column(String(64), primary_key=True)
-    username = Column(String(128))
-    email = Column(String(128))
-    password_hash = Column(String(200))
+    username = Column(String(128), server_default=text("NULL::character varying"))
+    email = Column(String(128), server_default=text("NULL::character varying"))
+    password_hash = Column(String(200), server_default=text("NULL::character varying"))
     allow_client_generated_ids = True
 
     # parent relationships (access parent)
@@ -132,7 +132,7 @@ class UserRole(SAFRSBase, Baseauthentication, db.Model, UserMixin):  # type: ign
 
     user_id = Column(ForeignKey('User.id', ondelete='CASCADE', onupdate='CASCADE'), primary_key=True, nullable=False)
     notes = Column(Text)
-    role_name = Column(ForeignKey('Role.name', ondelete='CASCADE', onupdate='CASCADE'), primary_key=True, nullable=False, index=True)
+    role_name = Column(ForeignKey('Role.name', ondelete='CASCADE', onupdate='CASCADE'), primary_key=True, nullable=False)
     allow_client_generated_ids = True
 
     # parent relationships (access parent)
