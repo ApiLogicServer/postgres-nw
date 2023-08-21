@@ -1,5 +1,5 @@
 about:
-  date: August 20, 2023 07:18:27
+  date: August 21, 2023 15:44:37
   recent_changes: works with modified safrs-react-admin
   version: 0.0.0
 api_root: '{http_type}://{swagger_host}:{port}/{api}'
@@ -217,13 +217,14 @@ resources:
     user_key: ship_name
   OrderDetail:
     attributes:
-    - label: ' unit_price*'
-      name: unit_price
-      required: true
+    - label: ' order_id*'
+      name: order_id
       search: true
       sort: true
     - name: order_id
     - name: product_id
+    - name: unit_price
+      required: true
     - name: quantity
       required: true
     - name: discount
@@ -240,7 +241,7 @@ resources:
       name: product
       resource: Product
     type: OrderDetail
-    user_key: unit_price
+    user_key: order_id
   Product:
     attributes:
     - label: ' product_name*'
@@ -278,12 +279,12 @@ resources:
     user_key: product_name
   Region:
     attributes:
-    - label: ' region_id*'
-      name: region_id
+    - label: ' region_description*'
+      name: region_description
+      required: true
       search: true
       sort: true
-    - name: region_description
-      required: true
+    - name: region_id
     tab_groups:
     - direction: tomany
       fks:
@@ -291,7 +292,7 @@ resources:
       name: TerritoryList
       resource: Territory
     type: Region
-    user_key: region_id
+    user_key: region_description
   Shipper:
     attributes:
     - label: ' company_name*'
