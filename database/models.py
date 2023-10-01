@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # Alter this file per your database maintenance policy
 #    See https://apilogicserver.github.io/Docs/Project-Rebuild/#rebuilding
 #
-# Created:  August 22, 2023 10:45:57
+# Created:  October 01, 2023 06:34:57
 # Database: postgresql://postgres:p@localhost/postgres
 # Dialect:  postgresql
 #
